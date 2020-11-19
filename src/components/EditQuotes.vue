@@ -67,7 +67,7 @@ export default {
         this.board.description = ''
         this.board.author = ''
         router.push({
-          name: 'BoardList'
+          name: 'EditQuotes'
         })
       })
       .catch((error) => {
