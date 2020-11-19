@@ -70,7 +70,6 @@ export default {
           description: doc.data().description,
           author : doc.data().author
         });
-        this.boards = this.boards
       });
       let randomBoard = this.boards[Math.floor(Math.random()*this.boards.length)]
       this.myQuotes = randomBoard
