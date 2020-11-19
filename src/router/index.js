@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import QuotesRandom from '../components/QuotesRandom.vue'
+import EditQuotes from '../components/EditQuotes.vue'
 
 Vue.use(VueRouter)
 
@@ -15,6 +16,11 @@ const routes = [
         path: '/',
         name: 'QuotesRandom',
         component: QuotesRandom
+      },
+      {
+        path: '/edit',
+        name: 'EditQuotes',
+        component: EditQuotes
       },
     ]
   },
