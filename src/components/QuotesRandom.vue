@@ -146,11 +146,8 @@ export default {
         font-size: 2vw;
       }
     }
-    p{
-      
-    }
-      }
-    }
+  }
+}
   }
   .button--rotate {
     width: 71px;
