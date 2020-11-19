@@ -28,9 +28,9 @@
       </svg>
     </div>
       </div>
-      <button @click="randomQuotes" class="button--rotate" :style="{transform: 'rotate(' + this.dataSpin + 'deg)'}">
+      <div @click="randomQuotes" class="button--rotate" :style="{transform: 'rotate(' + this.dataSpin + 'deg)'}">
       <img :src="refresh" alt="refresh"/>
-    </button>
+    </div>
   </div>
 </template>
 
@@ -152,7 +152,7 @@ export default {
       }
     }
   }
-  button {
+  .button--rotate {
     width: 71px;
     height: 71px;
     border-radius: 50%;
