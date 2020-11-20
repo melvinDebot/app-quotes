@@ -1,5 +1,6 @@
 <template>
   <div id="home" :style="{ 'background':  myColor}">
+    <h6>Développer par Melvin Dbt</h6>
       <div class="box">
         <div class="box--text">
         <!-- VERSET -->
@@ -119,6 +120,13 @@ export default {
     align-items: center;
     flex-direction: column;
     overflow: hidden;
+    h6{
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      font-size: 10px;
+      opacity: 0.30;
+    }
     .box {
       position: relative;
       display: flex;
