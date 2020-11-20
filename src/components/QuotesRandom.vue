@@ -162,6 +162,9 @@ export default {
     border-radius: 50%;
     background: white;
     padding: 18px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border: none;
     transition: all, 1s;
   }

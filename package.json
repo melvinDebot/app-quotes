@@ -5,7 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "eslint --ext .js,.vue --fix src"
   },
   "dependencies": {
     "bootstrap-vue": "^2.19.0",
@@ -36,6 +36,7 @@
     },
     "extends": [
       "plugin:vue/essential",
+      "plugin:vue/vue3-recommended",
       "eslint:recommended"
     ],
     "parserOptions": {

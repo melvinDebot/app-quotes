@@ -1,48 +1,22 @@
 <template>
-  <b-row>
-    <b-col cols="12">
-      <h2>
-        Ajouter
-      </h2>
-      <b-jumbotron>
-        <b-form @submit="onSubmit">
-          <b-form-group id="titleGroup"
-                    horizontal
-                    :label-cols="4"
-                    breakpoint="md"
-                    label="Verset">
-            <b-form-input id="title" v-model.trim="board.title"></b-form-input>
-          </b-form-group>
-          <b-form-group id="descGroup"
-                    horizontal
-                    :label-cols="4"
-                    breakpoint="md"
-                    label="Verset Description">
-              <b-form-textarea id="description"
-                         v-model="board.description"
-                         placeholder="Enter something"
-                         :rows="4"
-                         :max-rows="6">{{board.description}}
-            </b-form-textarea>
-          </b-form-group>
-          <b-form-group id="authorGroup"
-                    horizontal
-                    :label-cols="4"
-                    breakpoint="md"
-                    label="Phrase du jour">
-                    <b-form-textarea id="description"
-                         v-model="board.author"
-                         placeholder="Enter something"
-                         :rows="4"
-                         :max-rows="6">{{board.author}}
-            </b-form-textarea>
-            <!-- <b-form-input id="author" v-model.trim="board.author"></b-form-input> -->
-          </b-form-group>
-          <b-button type="submit" variant="success">Save</b-button>
-        </b-form>
-      </b-jumbotron>
-    </b-col>
-  </b-row>
+  <div class="edit">
+    <form @submit="onSubmit">
+      <div class="form--verset">
+        <label for="fname">Numéro Verset</label>
+        <input type="text" id="fname" name="firstname" placeholder="Jean 3:10" v-model.trim="board.title">
+      </div>
+      <div class="form--verset">
+        <label for="w3review">Verset description</label>
+        <textarea id="w3review" name="w3review" rows="7" cols="50" v-model="board.description" placeholder="Quand jésus"></textarea>
+      </div>
+      <div class="form--verset">
+        <label for="w3review">Phrase du jour</label>
+        <textarea id="w3review" name="w3review" rows="7" cols="50" v-model="board.author" placeholder="La parole dit">
+        </textarea>
+      </div>
+      <button type="submit"> Envoyer</button>
+    </form>
+  </div>
 </template>
 
 <script>
@@ -79,25 +53,54 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.row{
+.edit{
+  width: 100%;
   height: 100%;
-  overflow: hidden;
-  .col-12{
-    margin: 0;
-    padding: 0;
-    width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  form {
+    width: 95%;
     height: 100%;
-    .jumbotron{
-      height: 100%;
-      margin: 0;
-      form{
-        padding: 0px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    .form--verset{
+      width: 100%;
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      margin-top: 15px;
+      box-shadow: none;
+      label{
+        font-weight: 500;
+      }
+      input[type=text]{
+        width: 100%;
+        height: 40px;
+        border: 1px solid;
+        box-shadow: none;
+        font-size: 15px;
+        border: 1px solid #FFC61B
+      }
+      textarea{
+        border: 1px solid;
+        box-shadow: none;
+        font-size: 16px;
+        border: 1px solid #FFC61B
       }
     }
+    button {
+      width: 100%;
+      height: 40px;
+      background-color: lightgreen;
+      color: white;
+      margin-top: 15px;
+      border: none;
+      font-size: 20px
+    }
   }
-}
-h2{
-  text-align: center;
-  margin : 0
 }
 </style>
