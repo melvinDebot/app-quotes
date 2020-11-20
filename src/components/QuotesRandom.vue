@@ -104,12 +104,6 @@ export default {
       )
     }
   },
-  mounted(){
-    let deferredPrompt;
-    window.addEventListener('beforeinstallprompt', (e)=> {
-      console.log('grrr')
-    })
-  }
 }
 </script>
 
