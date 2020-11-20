@@ -105,6 +105,10 @@ export default {
     }
   },
   mounted(){
+    let deferredPrompt;
+    window.addEventListener('beforeinstallprompt', (e)=> {
+      console.log('grrr')
+    })
   }
 }
 </script>
@@ -126,6 +130,20 @@ export default {
       left: 10px;
       font-size: 10px;
       opacity: 0.30;
+    }
+    .banner--install{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      width: 40%;
+      height: 30%;
+      border-radius: 5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 100
     }
     .box {
       position: relative;
