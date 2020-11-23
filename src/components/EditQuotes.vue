@@ -40,6 +40,7 @@ export default {
         this.board.title = ''
         this.board.description = ''
         this.board.author = ''
+        this.board.click = false
         router.push({
           name: 'EditQuotes'
         })

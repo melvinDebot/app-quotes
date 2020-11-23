@@ -29,6 +29,9 @@
       </svg>
     </div>
       </div>
+      <svg width="37" height="37" viewBox="0 0 37 37" fill="none" xmlns="http://www.w3.org/2000/svg" class="heart" :class="{active : this.myQuotes.click}" @click="show">
+      <path d="M18.4994 32.4584C-12.3333 15.4166 9.24998 -3.08336 18.4994 8.61489C27.75 -3.08336 49.3333 15.4166 18.4994 32.4584Z" stroke-opacity="0.92" stroke-width="1.8"/>
+      </svg>
       <div @click="randomQuotes" class="button--rotate" :style="{transform: 'rotate(' + this.dataSpin + 'deg)'}">
       <img :src="refresh" alt="refresh"/>
     </div>
@@ -59,6 +62,7 @@ export default {
       errors: [],
       myQuotes : {},
       ref: firebase.firestore().collection('anc-turnips'),
+      showHeart : false,
     }
   },
   created () {
@@ -66,10 +70,11 @@ export default {
       this.boards = [];
       querySnapshot.forEach((doc) => {
         this.boards.push({
-          key: doc.id,
+          // key: doc.id,
           title: doc.data().title,
           description: doc.data().description,
-          author : doc.data().author
+          author : doc.data().author,
+          click : doc.data().click
         });
       });
       let randomBoard = this.boards[Math.floor(Math.random()*this.boards.length)]
@@ -102,8 +107,20 @@ export default {
           ease: Power2.easeInOut
         },
       )
+    },
+    show(){
+      this.myQuotes.click = !this.myQuotes.click
+      console.log(this.myQuotes.click)
     }
   },
+  mounted(){
+    if(localStorage.heart) this.myQuotes.click = localStorage.heart;
+  },
+  watch : {
+    heart(newHeart){
+      this.myQuotes.click = newHeart
+    }
+  }
 }
 </script>
 
@@ -217,5 +234,14 @@ export default {
     top: 0;
     left: 0;
     opacity: 0.40;
+  }
+  .heart{
+    margin-bottom: 10px;
+    fill : none;
+    stroke: white
+  }
+  .active {
+    fill : white;
+    stroke: white
   }
 </style>
