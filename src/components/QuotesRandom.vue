@@ -10,7 +10,7 @@
         <h3>{{ myQuotes.title }}</h3> 
       </div>
       <div>
-      <h2>A retenir</h2>
+      <h2>À retenir</h2>
       <p>
         {{ myQuotes.author }}
         <span class="sentence" :style="{ 'background':  myColor}"></span>
