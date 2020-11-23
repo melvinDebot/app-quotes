@@ -3,9 +3,6 @@
     <h6>Développer par Melvin Dbt</h6>
       <div class="box">
         <div class="box--text">
-        <!-- VERSET -->
-        
-        <!-- VERSET Number-->
         <h4>{{ myQuotes.description }}</h4> 
         <h3>{{ myQuotes.title }}</h3> 
       </div>
@@ -70,7 +67,7 @@ export default {
       this.boards = [];
       querySnapshot.forEach((doc) => {
         this.boards.push({
-          // key: doc.id,
+          key: doc.id,
           title: doc.data().title,
           description: doc.data().description,
           author : doc.data().author,
