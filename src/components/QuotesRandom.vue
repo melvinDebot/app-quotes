@@ -30,10 +30,10 @@
         <svg width="37" height="37" viewBox="0 0 37 37" fill="none" xmlns="http://www.w3.org/2000/svg" class="heart" :class="{active : newLike}" @click="show">
         <path d="M18.4994 32.4584C-12.3333 15.4166 9.24998 -3.08336 18.4994 8.61489C27.75 -3.08336 49.3333 15.4166 18.4994 32.4584Z" stroke-opacity="0.92" stroke-width="1.8"/>
         </svg>
-        <h4 v-if="myQuotes.counterLike <= 2">
-          {{ myQuotes.counterLike }} personne aiment ce verset
+        <h4 v-if="myQuotes.counterLike <= 1">
+          {{ myQuotes.counterLike }} personne aime ce verset.
         </h4>
-        <h4 v-if="myQuotes.counterLike > 2">
+        <h4 v-if="myQuotes.counterLike > 1">
           {{ myQuotes.counterLike }} personnes aiment ce verset
         </h4>
       </div>
