@@ -41,6 +41,7 @@ export default {
         this.board.description = ''
         this.board.author = ''
         this.board.click = false
+        this.board.counterLike = 0
         router.push({
           name: 'EditQuotes'
         })

@@ -1,6 +1,6 @@
 <template>
   <div id="home" :style="{ 'background':  myColor}">
-    <h6>Développer par Melvin Dbt</h6>
+    <h6 @click="addLike">Développer par Melvin Dbt {{ myQuotes.counter }}</h6>
       <div class="box">
         <div class="box--text">
         <h4>{{ myQuotes.description }}</h4> 
@@ -71,7 +71,8 @@ export default {
           title: doc.data().title,
           description: doc.data().description,
           author : doc.data().author,
-          click : doc.data().click
+          click : doc.data().click,
+          counter : doc.data().counterLike
         });
       });
       let randomBoard = this.boards[Math.floor(Math.random()*this.boards.length)]
@@ -108,16 +109,21 @@ export default {
     show(){
       this.myQuotes.click = !this.myQuotes.click
       console.log(this.myQuotes.click)
+    },
+    // SA MARCHE IL TE MANQUE QUE A STYLE CA
+    addLike(){
+      const userRef = this.ref.doc(this.myQuotes.key)
+      const increment = firebase.firestore.FieldValue.increment(1);
+      userRef.update({ counter: increment });
     }
   },
   mounted(){
     if(localStorage.heart) this.myQuotes.click = localStorage.heart;
+    // const userRef = this.ref.doc()
+    // // firebase.firestore().collection('anc-turnips').doc(this.myQuotes.key);
+    
   },
-  watch : {
-    heart(newHeart){
-      this.myQuotes.click = newHeart
-    }
-  }
+  
 }
 </script>
 
