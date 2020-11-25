@@ -1,13 +1,13 @@
 <template>
   <div id="home" :style="{ 'background':  myColor}">
-    <h6 @click="addLike">Développer par Melvin Dbt {{ myQuotes.counter }}</h6>
+    <h6>Développer par Melvin Dbt</h6>
       <div class="box">
         <div class="box--text">
         <h4>{{ myQuotes.description }}</h4> 
         <h3>{{ myQuotes.title }}</h3> 
       </div>
       <div>
-      <h2>À retenir</h2>
+      <h2>{{ text }}</h2>
       <p>
         {{ myQuotes.author }}
         <span class="sentence" :style="{ 'background':  myColor}"></span>
@@ -26,9 +26,13 @@
       </svg>
     </div>
       </div>
-      <svg width="37" height="37" viewBox="0 0 37 37" fill="none" xmlns="http://www.w3.org/2000/svg" class="heart" :class="{active : this.myQuotes.click}" @click="show">
-      <path d="M18.4994 32.4584C-12.3333 15.4166 9.24998 -3.08336 18.4994 8.61489C27.75 -3.08336 49.3333 15.4166 18.4994 32.4584Z" stroke-opacity="0.92" stroke-width="1.8"/>
-      </svg>
+      <div class="count" v-if="showDiv">
+        <svg width="37" height="37" viewBox="0 0 37 37" fill="none" xmlns="http://www.w3.org/2000/svg" class="heart" :class="{active : newLike}" @click="show">
+        <path d="M18.4994 32.4584C-12.3333 15.4166 9.24998 -3.08336 18.4994 8.61489C27.75 -3.08336 49.3333 15.4166 18.4994 32.4584Z" stroke-opacity="0.92" stroke-width="1.8"/>
+        </svg>
+        <h4>{{ myQuotes.counterLike }} personnes aiment ce verset</h4>
+      </div>
+      
       <div @click="randomQuotes" class="button--rotate" :style="{transform: 'rotate(' + this.dataSpin + 'deg)'}">
       <img :src="refresh" alt="refresh"/>
     </div>
@@ -41,6 +45,7 @@ import firebase from '../Firebase'
 import router from '../router'
 import refresh from '@/assets/refresh.png'
 import gsap, {Power2} from 'gsap'
+import { setTimeout } from 'timers';
 
 export default {
   name: 'QuotesRandom',
@@ -60,6 +65,8 @@ export default {
       myQuotes : {},
       ref: firebase.firestore().collection('anc-turnips'),
       showHeart : false,
+      numberClicked : [],
+      showDiv : false
     }
   },
   created () {
@@ -72,11 +79,10 @@ export default {
           description: doc.data().description,
           author : doc.data().author,
           click : doc.data().click,
-          counter : doc.data().counterLike
+          counterLike : doc.data().counterLike
         });
       });
-      let randomBoard = this.boards[Math.floor(Math.random()*this.boards.length)]
-      this.myQuotes = randomBoard
+      
     });
   },
   methods: {
@@ -89,7 +95,8 @@ export default {
 
       let color = this.colors[Math.floor(Math.random()*this.colors.length)]
       this.myColor = color
-      this.text = "A retenir",
+      this.text = "À retenir",
+      this.showDiv = true
       this.dataSpin += 180
       this.overlayText()
     },
@@ -107,23 +114,43 @@ export default {
       )
     },
     show(){
+      this.showHeart = this.myQuotes.click
       this.myQuotes.click = !this.myQuotes.click
-      console.log(this.myQuotes.click)
+      // this.numberClicked.push(this.newLike)
+      setTimeout(() => {
+        const userRef = this.ref.doc(this.myQuotes.key)
+        const increment = firebase.firestore.FieldValue.increment(1)
+        userRef.update({ counterLike: increment });
+      }, 1000)
+      // this.saveCats();
     },
-    // SA MARCHE IL TE MANQUE QUE A STYLE CA
-    addLike(){
-      const userRef = this.ref.doc(this.myQuotes.key)
-      const increment = firebase.firestore.FieldValue.increment(1);
-      userRef.update({ counter: increment });
+    // saveCats() {
+    //   let parsed = JSON.stringify(this.numberClicked);
+    //   localStorage.setItem('cats', parsed);
+    // }
+  },
+  computed : {
+    newLike(){
+      return this.showHeart = this.myQuotes.click
     }
   },
   mounted(){
-    if(localStorage.heart) this.myQuotes.click = localStorage.heart;
-    // const userRef = this.ref.doc()
-    // // firebase.firestore().collection('anc-turnips').doc(this.myQuotes.key);
+    // if(localStorage.count) this.numberClicked = localStorage.count;
+    // if(localStorage.getItem('cats')) {
+    //   try {
+    //     this.numberClicked = JSON.parse(localStorage.getItem('cats'));
+    //   } catch(e) {
+    //     localStorage.removeItem('cats');
+    //   }
+    // }
     
   },
-  
+  // watch:{
+  //   count(newCount) {
+  //     localStorage.count = newCount;
+  //   }
+  // }
+
 }
 </script>
 
@@ -179,7 +206,7 @@ export default {
     }
     h4{
       text-align : start;
-      font-size: 5vw;
+      font-size: 4vw;
       margin-bottom: 10px;
       @media (min-width: 600px) {
         font-size: 2vw;
@@ -246,5 +273,17 @@ export default {
   .active {
     fill : white;
     stroke: white
+  }
+  .count{
+    width: 200px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    h4{
+      margin-left: 10px;
+      font-size: 13px;
+    }
   }
 </style>
