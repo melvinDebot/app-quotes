@@ -1,6 +1,6 @@
 <template>
   <div id="home" :style="{ 'background':  myColor}">
-    <PopupQuotes />
+    <!-- <PopupQuotes /> -->
     <h6>Développer par Melvin Dbt</h6>
       <div class="box">
         <div class="box--text">
