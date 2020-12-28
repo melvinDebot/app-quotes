@@ -1,6 +1,6 @@
 <template>
   <div class="popup" v-if="show ">
-    <p>Bonjour pour l’avancement de notre application nous aimerions que vous remplissiez ce formulaire de quelques minutes. </p>
+    <p>Bonjour, pour l’amélioration de notre application nous aimerions que vous remplissiez ce formulaire de quelques minutes. </p>
     <div class="popup--buttons">
       <a class="less" @click="displayPopup">Déjà fait </a>
       <a class="fill" href="https://forms.gle/1MsbCtgTPEnnwvEa6">Voir le formulaire </a>
