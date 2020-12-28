@@ -1,5 +1,6 @@
 <template>
   <div id="home" :style="{ 'background':  myColor}">
+    <PopupQuotes />
     <h6>Développer par Melvin Dbt</h6>
       <div class="box">
         <div class="box--text">
@@ -50,10 +51,13 @@ import firebase from '../Firebase'
 import router from '../router'
 import refresh from '@/assets/refresh.png'
 import gsap, {Power2} from 'gsap'
-import { setTimeout } from 'timers';
+import PopupQuotes from './PopupQuotes'
 
 export default {
   name: 'QuotesRandom',
+  components : {
+    PopupQuotes
+  },
   data () {
     return {
       fields: [
@@ -170,6 +174,7 @@ export default {
     align-items: center;
     flex-direction: column;
     overflow: hidden;
+
     h6{
       position: absolute;
       top: 10px;
