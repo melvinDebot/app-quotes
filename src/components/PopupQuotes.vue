@@ -54,6 +54,8 @@ export default {
       font-size: 12px;
       line-height: 33px;
       border-radius: 6px;
+      list-style: none;
+      text-decoration: none;
     }
     .less{
       color: black;
