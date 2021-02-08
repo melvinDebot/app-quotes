@@ -29,7 +29,7 @@ export default {
   position: absolute;
   width: 100%;
   height: 100vh;
-  background: red;
-  z-index: 100;
+  background: green;
+  z-index: 100
 }
 </style>

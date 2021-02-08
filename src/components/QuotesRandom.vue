@@ -6,7 +6,7 @@
     </div>
     <Swipeable
       class="card"
-      v-for="(card, index) in boards"
+      v-for="(card, index) in newArray"
       :key="card.key"
       v-on:swipe="onSwipe"
     >
@@ -50,25 +50,8 @@ export default {
         { key: "actions", label: "Action", class: "text-center" },
       ],
       boards: [],
-      dataSpin: 0,
-      text: "Appuyer",
-      myColor: "",
-      colors: [
-        "#4CACE4",
-        "#94EC94",
-        "#FC6C64",
-        "#E4CCFC",
-        "#FCBC94",
-        "#FCB847",
-        "#F2D4CB",
-        "#FCECAC",
-        "#94EC94",
-        "#F4EC9C",
-        "#E4FC84",
-        "#B4D4E4",
-      ],
       errors: [],
-      myQuotes: {},
+      myQuotes: [],
       ref: firebase.firestore().collection("anc-turnips"),
       showHeart: false,
       numberClicked: [],
@@ -120,6 +103,8 @@ export default {
     },
     shuffleArray(array) {
       array.sort(() => Math.random() - 0.5);
+      return array
+      // this.myQuotes = array
     },
     // randomQuotes() {
     //   let randomBoard = this.boards[
@@ -149,11 +134,12 @@ export default {
     newLike() {
       return (this.showHeart = this.myQuotes.click);
     },
-    newArray() {
-      return this.shuffleArray(this.boards);
-    },
+    newArray(){
+      return this.boards.sort(function(){ return 0.5 - Math.random()})
+    }
   },
   mounted() {
+    
     console.log("page refresh");
   },
   destroyed() {},
