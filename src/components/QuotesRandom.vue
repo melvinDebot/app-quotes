@@ -1,5 +1,9 @@
 <template>
   <div id="home">
+    <div class="icons">
+      <img :src="logoutIcon" alt="" @click="logout"/>
+      <img :src="accountIcon" alt=""/>
+    </div>
     <Swipeable
       class="card"
       v-for="card in boards"
@@ -17,10 +21,13 @@
 <script>
 import firebase from "../Firebase";
 import router from "../router";
-import refresh from "@/assets/refresh.png";
 import gsap, { Power2 } from "gsap";
 import PopupQuotes from "./PopupQuotes";
 import { Swipeable } from "vue-swipy";
+
+import logoutIcon from '../assets/logout.svg'
+import accountIcon from '../assets/account.svg'
+
 
 export default {
   name: "QuotesRandom",
@@ -30,12 +37,13 @@ export default {
   },
   data() {
     return {
+      logoutIcon,
+      accountIcon,
       fields: [
         { key: "title", label: "Title", sortable: true, class: "text-left" },
         { key: "actions", label: "Action", class: "text-center" },
       ],
       boards: [],
-      refresh: refresh,
       dataSpin: 0,
       text: "Appuyer",
       myColor: "",
@@ -80,6 +88,11 @@ export default {
     details(board) {
       router.push({ name: "ShowBoard", params: { id: board.key } });
     },
+    logout(){
+      firebase.auth().signOut().then(() => {
+        this.$router.replace('login')
+      })
+    },
     onSwipe(direction) {
       console.log(direction);
       setTimeout(() => {
@@ -122,7 +135,6 @@ export default {
         const increment = firebase.firestore.FieldValue.increment(1);
         userRef.update({ counterLike: increment });
       }, 1000);
-      // this.saveCats();
     },
   },
   computed: {
@@ -148,6 +160,17 @@ export default {
   align-items: center;
   flex-direction: column;
   overflow: hidden;
+  padding: 0px 37px !important;
+  .icons{
+    width: 80%;
+    height: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-self: flex-start;
+    position: absolute;
+    top: 15px;
+  }
   .card {
     position: absolute;
     width: 80%;
