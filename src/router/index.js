@@ -1,20 +1,22 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
-import QuotesRandom from '../components/QuotesRandom.vue'
-import EditQuotes from '../components/EditQuotes.vue'
-import TestCard from '../components/TestCard'
+import Home from '@/views/Home.vue'
+import QuotesRandom from '@/components/QuotesRandom.vue'
+import EditQuotes from '@/components/EditQuotes.vue'
+import TestCard from '@/components/TestCard'
+import Login from '@/views/Login'
+import SignUp from '@/views/SignUp'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
+    path: '/home',
     name: 'Home',
     component: Home,
     children : [
       {
-        path: '/',
+        path: '/quotes',
         name: 'QuotesRandom',
         component: QuotesRandom
       },
@@ -34,9 +36,9 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
   {
-    path: '/test',
-    name: 'Test',
-    component: TestCard,
+    path: '/',
+    name: 'login',
+    component: Login,
   }
 ]
 
