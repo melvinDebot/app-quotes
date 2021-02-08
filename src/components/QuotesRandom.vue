@@ -7,7 +7,9 @@
       v-on:swipe="onSwipe"
     >
     <p>{{ card.description }}</p>
-    <h2></h2>
+    <h2>{{ card.title }}</h2>
+    <h3>A RETENIR</h3>
+    <p>{{ card.author }}</p>
 
     </Swipeable>
   </div>
@@ -139,13 +141,20 @@ export default {
     overflow: hidden;
     .card {
       position: absolute;
-      width: 316px;
-      height: 496px;
+      width: 80%;
+      height: 76%;
       border-radius: 8px;
       background : #FFC61B;
-      display : flex;
-      justify-content: center;
+      display: flex;
+      justify-content: flex-start;
       align-items: center;
+      overflow: hidden;
+      flex-direction: column;
+      padding: 10px 10px;
+      h2{
+        margin: 10px 0px;
+        color: #FFFFFF;
+      }
     }
 
     h6{
@@ -198,18 +207,7 @@ export default {
   }
 }
   }
-  .button--rotate {
-    width: 71px;
-    height: 71px;
-    border-radius: 50%;
-    background: white;
-    padding: 18px 0px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: none;
-    transition: all, 1s;
-  }
+
   p{
     text-align: start;
     font-size: 4.5vw;
