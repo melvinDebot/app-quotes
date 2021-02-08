@@ -133,10 +133,6 @@ export default {
       }, 1000)
       // this.saveCats();
     },
-    // saveCats() {
-    //   let parsed = JSON.stringify(this.numberClicked);
-    //   localStorage.setItem('cats', parsed);
-    // }
   },
   computed : {
     newLike(){
@@ -144,21 +140,12 @@ export default {
     }
   },
   mounted(){
-    // if(localStorage.count) this.numberClicked = localStorage.count;
-    // if(localStorage.getItem('cats')) {
-    //   try {
-    //     this.numberClicked = JSON.parse(localStorage.getItem('cats'));
-    //   } catch(e) {
-    //     localStorage.removeItem('cats');
-    //   }
-    // }
+    console.log('page refresh')
     
   },
-  // watch:{
-  //   count(newCount) {
-  //     localStorage.count = newCount;
-  //   }
-  // }
+  destroyed(){
+    
+  }
 
 }
 </script>
