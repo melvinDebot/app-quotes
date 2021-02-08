@@ -16,59 +16,58 @@
 import { Swipeable } from "vue-swipy";
 
 function getRandomColor() {
-    var letters = "0123456789ABCDEF";
-    var color = "#";
-    for (var i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 6)];
-    }
-    return color;
+  var letters = "0123456789ABCDEF";
+  var color = "#";
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 6)];
   }
+  return color;
+}
 
 export default {
   name: "App",
   components: { Swipeable },
   data() {
-    return { 
-      stack: [] 
+    return {
+      stack: [],
     };
   },
-  mounted(){
-    let i = null
-    console.log(this.stack)
-    for (i = 0; i < 3; i++){
+  mounted() {
+    let i = null;
+    console.log(this.stack);
+    for (i = 0; i < 3; i++) {
       this.stack.push({
-        id: Math.random(), 
-        color: getRandomColor() 
-      })
+        id: Math.random(),
+        color: getRandomColor(),
+      });
     }
   },
-  methods : {
-    onSwipe(direction){
+  methods: {
+    onSwipe(direction) {
       console.log(direction);
       setTimeout(() => {
-        this.stack.pop(); 
-      }, 300)
-    }
+        this.stack.pop();
+      }, 300);
+    },
   },
-
 };
 </script>
 
 <style lang="scss">
 body {
-    margin: 0;
-  }  
-  .card {
-    position: absolute;
-    height: 400px;
-    width: 250px;
-    border-radius: 8px;
-  }
-  #app--test {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    width: 100vw;
-  }
+  margin: 0;
+}
+.card {
+  position: absolute;
+  height: 400px;
+  width: 250px;
+  border-radius: 8px;
+}
+#app--test {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
 </style>

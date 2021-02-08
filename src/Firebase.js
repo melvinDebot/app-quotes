@@ -1,5 +1,4 @@
-import firebase from 'firebase';
-
+import firebase from "firebase";
 
 const config = {
   apiKey: "AIzaSyDreag2_rfgyYbj__gMcE3T9HuhnKGhmM8",
@@ -7,6 +6,5 @@ const config = {
   projectId: "quotes-a52b7",
 };
 firebase.initializeApp(config);
-
 
 export default firebase;

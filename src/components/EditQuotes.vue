@@ -3,59 +3,80 @@
     <form @submit="onSubmit">
       <div class="form--verset">
         <label for="fname">Numéro Verset</label>
-        <input type="text" id="fname" name="firstname" placeholder="Jean 3:10" v-model.trim="board.title">
+        <input
+          type="text"
+          id="fname"
+          name="firstname"
+          placeholder="Jean 3:10"
+          v-model.trim="board.title"
+        />
       </div>
       <div class="form--verset">
         <label for="w3review">Verset description</label>
-        <textarea id="w3review" name="w3review" rows="7" cols="50" v-model="board.description" placeholder="Quand jésus"></textarea>
+        <textarea
+          id="w3review"
+          name="w3review"
+          rows="7"
+          cols="50"
+          v-model="board.description"
+          placeholder="Quand jésus"
+        ></textarea>
       </div>
       <div class="form--verset">
         <label for="w3review">Phrase du jour</label>
-        <textarea id="w3review" name="w3review" rows="7" cols="50" v-model="board.author" placeholder="La parole dit">
+        <textarea
+          id="w3review"
+          name="w3review"
+          rows="7"
+          cols="50"
+          v-model="board.author"
+          placeholder="La parole dit"
+        >
         </textarea>
       </div>
-      <button type="submit"> Envoyer</button>
+      <button type="submit">Envoyer</button>
     </form>
   </div>
 </template>
 
 <script>
-
-import firebase from '../Firebase'
-import router from '../router'
+import firebase from "../Firebase";
+import router from "../router";
 
 export default {
-  name: 'AddBoard',
-  data () {
+  name: "AddBoard",
+  data() {
     return {
-      ref: firebase.firestore().collection('anc-turnips'),
-      board: {}
-    }
+      ref: firebase.firestore().collection("anc-turnips"),
+      board: {},
+    };
   },
   methods: {
-    onSubmit (evt) {
-      evt.preventDefault()
+    onSubmit(evt) {
+      evt.preventDefault();
 
-      this.ref.add(this.board).then(() => {
-        this.board.title = ''
-        this.board.description = ''
-        this.board.author = ''
-        this.board.click = false
-        this.board.counterLike = 0
-        router.push({
-          name: 'EditQuotes'
+      this.ref
+        .add(this.board)
+        .then(() => {
+          this.board.title = "";
+          this.board.description = "";
+          this.board.author = "";
+          this.board.click = false;
+          this.board.counterLike = 0;
+          router.push({
+            name: "EditQuotes",
+          });
         })
-      })
-      .catch((error) => {
-        alert("Error adding document: ", error);
-      });
-    }
-  }
-}
+        .catch((error) => {
+          alert("Error adding document: ", error);
+        });
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-.edit{
+.edit {
   width: 100%;
   height: 100%;
   display: flex;
@@ -67,31 +88,31 @@ export default {
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: start;
+    justify-content: flex-start;
     align-items: center;
-    .form--verset{
+    .form--verset {
       width: 100%;
       height: auto;
       display: flex;
       flex-direction: column;
       margin-top: 15px;
       box-shadow: none;
-      label{
+      label {
         font-weight: 500;
       }
-      input[type=text]{
+      input[type="text"] {
         width: 100%;
         height: 40px;
         border: 1px solid;
         box-shadow: none;
         font-size: 15px;
-        border: 1px solid #FFC61B
+        border: 1px solid #ffc61b;
       }
-      textarea{
+      textarea {
         border: 1px solid;
         box-shadow: none;
         font-size: 16px;
-        border: 1px solid #FFC61B
+        border: 1px solid #ffc61b;
       }
     }
     button {
@@ -101,7 +122,7 @@ export default {
       color: white;
       margin-top: 15px;
       border: none;
-      font-size: 20px
+      font-size: 20px;
     }
   }
 }

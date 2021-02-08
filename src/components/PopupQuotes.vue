@@ -1,31 +1,36 @@
 <template>
-  <div class="popup" v-if="show ">
-    <p>Bonjour, pour l’amélioration de notre application nous aimerions que vous remplissiez ce formulaire de quelques minutes. </p>
+  <div class="popup" v-if="show">
+    <p>
+      Bonjour, pour l’amélioration de notre application nous aimerions que vous
+      remplissiez ce formulaire de quelques minutes.
+    </p>
     <div class="popup--buttons">
       <a class="less" @click="displayPopup">Déjà fait </a>
-      <a class="fill" href="https://forms.gle/1MsbCtgTPEnnwvEa6">Voir le formulaire </a>
+      <a class="fill" href="https://forms.gle/1MsbCtgTPEnnwvEa6"
+        >Voir le formulaire
+      </a>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name : 'PopupQuotes',
-  data : function(){
+  name: "PopupQuotes",
+  data: function () {
     return {
-      show : true
-    }
+      show: true,
+    };
   },
-  methods : {
-    displayPopup(){
-      this.show = false
-      console.log('click')
-    }
-  }
-}
+  methods: {
+    displayPopup() {
+      this.show = false;
+      console.log("click");
+    },
+  },
+};
 </script>
 <style lang="scss">
-.popup{
+.popup {
   position: absolute;
   z-index: 100;
   width: 92%;
@@ -40,10 +45,10 @@ export default {
   justify-content: space-around;
   align-items: center;
   flex-direction: column;
-  p{
+  p {
     text-align: start;
   }
-  .popup--buttons{
+  .popup--buttons {
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -57,12 +62,12 @@ export default {
       list-style: none;
       text-decoration: none;
     }
-    .less{
+    .less {
       color: black;
-      border: 1px solid #FFC61B;
+      border: 1px solid #ffc61b;
     }
-    .fill{
-      background: #FFC61B;
+    .fill {
+      background: #ffc61b;
       color: black;
     }
   }
