@@ -6,7 +6,7 @@ import QuotesRandom from "@/components/QuotesRandom.vue";
 import EditQuotes from "@/components/EditQuotes.vue";
 import Login from "@/views/Login";
 import SignUp from "@/views/SignUp";
-import Feed from '../views/Feed'
+import Feed from "../views/Feed";
 
 Vue.use(VueRouter);
 

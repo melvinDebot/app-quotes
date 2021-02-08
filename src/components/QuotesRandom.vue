@@ -9,14 +9,18 @@
       v-for="(card, index) in boards"
       :key="card.key"
       v-on:swipe="onSwipe"
-      @click="clickedCard(index)"
     >
+      <div class="card--clicked" @click="clickedCard(index)"></div>
       <p>{{ card.description }}</p>
       <h2>{{ card.title }}</h2>
       <h3>A RETENIR</h3>
       <p>{{ card.author }}</p>
     </Swipeable>
-    <Popup :displayPopup="showPopup" />
+    <Popup
+      :displayPopup="showPopup"
+      :closePopup="closePopup"
+      :arrayData="DataObject"
+    />
   </div>
 </template>
 
@@ -29,13 +33,13 @@ import { Swipeable } from "vue-swipy";
 import logoutIcon from "../assets/logout.svg";
 import accountIcon from "../assets/account.svg";
 
-import Popup from '../components/Popup'
+import Popup from "../components/Popup";
 
 export default {
   name: "QuotesRandom",
   components: {
     Swipeable,
-    Popup
+    Popup,
   },
   data() {
     return {
@@ -69,7 +73,8 @@ export default {
       showHeart: false,
       numberClicked: [],
       showDiv: false,
-      showPopup : false
+      showPopup: false,
+      DataObject: {},
     };
   },
   created() {
@@ -91,6 +96,9 @@ export default {
     details(board) {
       router.push({ name: "ShowBoard", params: { id: board.key } });
     },
+    closePopup() {
+      this.showPopup = false;
+    },
     logout() {
       firebase
         .auth()
@@ -105,8 +113,13 @@ export default {
         this.boards.pop();
       }, 300);
     },
-    clickedCard(index){
-      console.log(index)
+    clickedCard(index) {
+      console.log(this.boards[index]);
+      this.showPopup = true;
+      this.DataObject = this.boards[index];
+    },
+    shuffleArray(array) {
+      array.sort(() => Math.random() - 0.5);
     },
     // randomQuotes() {
     //   let randomBoard = this.boards[
@@ -135,6 +148,9 @@ export default {
   computed: {
     newLike() {
       return (this.showHeart = this.myQuotes.click);
+    },
+    newArray() {
+      return this.shuffleArray(this.boards);
     },
   },
   mounted() {
@@ -183,6 +199,13 @@ export default {
       margin: 10px 0px;
       color: #ffffff;
     }
+  }
+  .card--clicked {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
   }
 
   h6 {
