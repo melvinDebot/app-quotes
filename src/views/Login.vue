@@ -20,7 +20,7 @@
     <router-link to="/sign-up">
       <h5>Nouvel Utilisateur ? <span>Sinscrire</span></h5>
     </router-link>
-    
+
     <!-- 
     <button @click="login">Connection</button>
     <p>
@@ -91,13 +91,13 @@ export default {
     position: relative;
     text-align: center;
     padding-top: 50px;
-    box-shadow: 0px 10px 0px #FBE193;
+    box-shadow: 0px 10px 0px #fbe193;
     color: white;
   }
-  .login--input{
+  .login--input {
     width: 85%;
     height: 75px;
-    &:nth-child(1){
+    &:nth-child(1) {
       margin-top: 40px;
     }
     margin-top: 25px;
@@ -107,23 +107,23 @@ export default {
       margin-top: 10px;
     }
   }
-  .login--button{
+  .login--button {
     width: 70%;
     height: 53px;
-    background: #FFC61B;
+    background: #ffc61b;
     border: none;
     color: white;
     text-align: center;
   }
-  .google{
-    background: #046CF4;
+  .google {
+    background: #046cf4;
   }
-  h5{
+  h5 {
     margin-top: 30px;
     font-weight: 400;
-    span{
+    span {
       font-weight: 600;
-      color: #FFC61B;
+      color: #ffc61b;
     }
   }
   a {
@@ -131,16 +131,15 @@ export default {
     cursor: pointer;
     color: black;
   }
-  
+
   button {
     margin-top: 20px;
     width: 10%;
     cursor: pointer;
   }
   p {
-    
     font-size: 13px;
-    
+
     .social-button {
       width: 75px;
       background: white;
