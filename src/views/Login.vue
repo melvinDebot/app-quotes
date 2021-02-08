@@ -105,6 +105,7 @@ export default {
       width: 100%;
       padding: 10px 5px;
       margin-top: 10px;
+      
     }
   }
   .login--button {

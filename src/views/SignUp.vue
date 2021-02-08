@@ -1,35 +1,30 @@
 <template>
   <div class="sign-up">
-  <div class="banner">
-    <h2>Se connecter</h2>
-  </div>
-  <div class="sign-up--input">
-    <h4>Nom utilisateur</h4>
-    <input type="text" v-model="email" placeholder="nom" />
-  </div>
-  <div class="sign-up--input">
-    <h4>Email</h4>
-    <input type="email" v-model="email" placeholder="Email" />
-  </div>
-  <div class="sign-up--input">
-    <h4>Password</h4>
-    <input type="password" v-model="password" placeholder="Password" />
-  </div>
-  <div class="sign-up--input">
-    <h4>Confirmer votre mot de passe</h4>
-    <input type="password" v-model="password" placeholder="Password" />
-  </div>
-  <button class="sign-up--button" @click="signUp">
-    <h4>Me connecter</h4>
-  </button>
-  <router-link to="/login">
-    <h5>Revenir à la page login</h5>
-  </router-link>
-    <!-- 
-    <input type="text" v-model="email" placeholder="Email" /><br />
-    <br />
-    <button @click="signUp">Sign Up</button>
-    <span>or go back to <router-link to="/login">login</router-link>.</span> -->
+    <div class="banner">
+      <h2>M'inscrire</h2>
+    </div>
+    <div class="sign-up--input">
+      <h4>Nom utilisateur</h4>
+      <input type="text" v-model="email" placeholder="nom" />
+    </div>
+    <div class="sign-up--input">
+      <h4>Email</h4>
+      <input type="email" v-model="email" placeholder="Email" />
+    </div>
+    <div class="sign-up--input">
+      <h4>Password</h4>
+      <input type="password" v-model="password" placeholder="Password" />
+    </div>
+    <div class="sign-up--input">
+      <h4>Confirmer votre mot de passe</h4>
+      <input type="password" v-model="password" placeholder="Password" />
+    </div>
+    <button class="sign-up--button" @click="signUp">
+      <h4>Me connecter</h4>
+    </button>
+    <router-link to="/login">
+      <h5>Revenir à la page login</h5>
+    </router-link>
   </div>
 </template>
 
@@ -82,24 +77,24 @@ export default {
     box-shadow: 0px 10px 0px #fbe193;
     color: white;
   }
-  .sign-up--input{
+  .sign-up--input {
     width: 85%;
     height: 75px;
-    margin-top: 25px;
+    margin-top: 15px;
     input {
       width: 100%;
       padding: 10px 5px;
       margin-top: 10px;
     }
   }
-  .sign-up--button{
+  .sign-up--button {
     width: 70%;
     height: 53px;
     background: #ffc61b;
     border: none;
     color: white;
     text-align: center;
-    margin-top: 10px;
+    margin-top: 15px;
   }
   h5 {
     margin-top: 20px;

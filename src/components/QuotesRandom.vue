@@ -1,20 +1,22 @@
 <template>
   <div id="home">
     <div class="icons">
-      <img :src="logoutIcon" alt="" @click="logout"/>
-      <img :src="accountIcon" alt=""/>
+      <img :src="logoutIcon" alt="" @click="logout" />
+      <img :src="accountIcon" alt="" />
     </div>
     <Swipeable
       class="card"
-      v-for="card in boards"
+      v-for="(card, index) in boards"
       :key="card.key"
       v-on:swipe="onSwipe"
+      @click="clickedCard(index)"
     >
       <p>{{ card.description }}</p>
       <h2>{{ card.title }}</h2>
       <h3>A RETENIR</h3>
       <p>{{ card.author }}</p>
     </Swipeable>
+    <Popup :displayPopup="showPopup" />
   </div>
 </template>
 
@@ -22,18 +24,18 @@
 import firebase from "../Firebase";
 import router from "../router";
 import gsap, { Power2 } from "gsap";
-import PopupQuotes from "./PopupQuotes";
 import { Swipeable } from "vue-swipy";
 
-import logoutIcon from '../assets/logout.svg'
-import accountIcon from '../assets/account.svg'
+import logoutIcon from "../assets/logout.svg";
+import accountIcon from "../assets/account.svg";
 
+import Popup from '../components/Popup'
 
 export default {
   name: "QuotesRandom",
   components: {
-    PopupQuotes,
     Swipeable,
+    Popup
   },
   data() {
     return {
@@ -67,6 +69,7 @@ export default {
       showHeart: false,
       numberClicked: [],
       showDiv: false,
+      showPopup : false
     };
   },
   created() {
@@ -88,44 +91,36 @@ export default {
     details(board) {
       router.push({ name: "ShowBoard", params: { id: board.key } });
     },
-    logout(){
-      firebase.auth().signOut().then(() => {
-        this.$router.replace('login')
-      })
+    logout() {
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          this.$router.replace("login");
+        });
     },
     onSwipe(direction) {
       console.log(direction);
       setTimeout(() => {
-        this.stack.pop();
+        this.boards.pop();
       }, 300);
     },
-    randomQuotes() {
-      let randomBoard = this.boards[
-        Math.floor(Math.random() * this.boards.length)
-      ];
-      this.myQuotes = randomBoard;
+    clickedCard(index){
+      console.log(index)
+    },
+    // randomQuotes() {
+    //   let randomBoard = this.boards[
+    //     Math.floor(Math.random() * this.boards.length)
+    //   ];
+    //   this.myQuotes = randomBoard;
 
-      let color = this.colors[Math.floor(Math.random() * this.colors.length)];
-      this.myColor = color;
-      (this.text = "À retenir"), (this.showDiv = true);
-      this.dataSpin += 180;
-      this.overlayText();
-    },
-    overlayText() {
-      let texte = document.querySelector(".sentence");
-      gsap.fromTo(
-        texte,
-        1,
-        {
-          width: "100%",
-          ease: Power2.easeInOut,
-        },
-        {
-          width: "0%",
-          ease: Power2.easeInOut,
-        }
-      );
-    },
+    //   let color = this.colors[Math.floor(Math.random() * this.colors.length)];
+    //   this.myColor = color;
+    //   (this.text = "À retenir"), (this.showDiv = true);
+    //   this.dataSpin += 180;
+    //   this.overlayText();
+    // },
+
     show() {
       this.showHeart = this.myQuotes.click;
       this.myQuotes.click = !this.myQuotes.click;
@@ -161,7 +156,7 @@ export default {
   flex-direction: column;
   overflow: hidden;
   padding: 0px 37px !important;
-  .icons{
+  .icons {
     width: 80%;
     height: 25px;
     display: flex;
@@ -172,6 +167,7 @@ export default {
     top: 15px;
   }
   .card {
+    z-index: 99;
     position: absolute;
     width: 80%;
     height: 76%;
