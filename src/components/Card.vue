@@ -166,7 +166,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../styles/index.scss";
+//@import "./../styles/index.scss";
 
 $cardsTotal: 3;
 $cardsWidth: 300px;
@@ -177,30 +177,30 @@ $defaultScale: 1 - ($cardsScaleOffset * $cardsTotal);
 $fs-card-title: 1.125em;
 
 .card {
-  @include card();
-  @include absolute(0);
-  @include sizing(100% 80vw);
-  @include flex-center();
+  // @include card();
+  // @include absolute(0);
+  // @include sizing(100% 80vw);
+  // @include flex-center();
 
-  @include after() {
-    @include sizing(21px 3px);
-    @include absolute(right 0 bottom 11px left 0);
+  // @include after() {
+  //   @include sizing(21px 3px);
+  //   @include absolute(right 0 bottom 11px left 0);
 
-    margin: auto;
-    border-radius: 100px;
-    background: rgba($c-black, 0.3);
-  }
+  //   margin: auto;
+  //   border-radius: 100px;
+  //   background: rgba($c-black, 0.3);
+  // }
 
   display: flex;
   max-height: 350px;
   margin: auto;
-  font-size: $fs-h2;
-  font-weight: $fw-bold;
-  color: $c-white;
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
   background-image: linear-gradient(
     -180deg,
-    $primary-gradient-start 2%,
-    $primary-gradient-end 100%
+    #d94e47 2%,
+    #df1165 100%
   );
   opacity: 0;
   transform: translateY($defaultTranslation) scale($defaultScale);
@@ -217,7 +217,7 @@ $fs-card-title: 1.125em;
   }
 
   &.isAnimating {
-    transition: transform 0.7s $ease-out-back;
+    transition: transform 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   }
 }
 
@@ -237,19 +237,17 @@ $fs-card-title: 1.125em;
     transform: translateY($translation) scale($scale);
 
     @if $i == 3 {
-      color: $c-red-25;
-      background-color: $c-red-25;
+      color: #432958;
+      background-color: #432958;
     } @else if $i == 2 {
-      color: $c-red-50;
-      background-color: $c-red-50;
+      color: #432958;
+      background-color: #73345e;
     }
 
     @if $i != 1 {
       background-image: none;
 
-      @include after() {
-        @include sizing(0 0);
-      }
+      
     }
   }
 }
