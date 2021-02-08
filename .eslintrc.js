@@ -1,17 +1,19 @@
 module.exports = {
-  env: {
-    node: true,
-    commonjs: true,
-  },
-  extends: [
-    // add more generic rulesets here, such as:
-    'eslint:recommended',
-    'plugin:vue/vue3-recommended',
-  ],
-  rules: {
-    'vue/no-unused-vars': 'warn',
-    'vue/require-v-for-key': 'warn',
-    'vue/valid-v-bind': 'warn',
-    'vue/no-deprecated-v-on-native-modifier': 'warn',
-  }
-}
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:vue/essential"
+    ],
+    "parserOptions": {
+        "ecmaVersion": 12,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "vue"
+    ],
+    "rules": {
+    }
+};

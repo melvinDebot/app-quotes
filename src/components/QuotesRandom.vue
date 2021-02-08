@@ -6,7 +6,7 @@
     </div>
     <Swipeable
       class="card"
-      v-for="(card, index) in newArray"
+      v-for="(card, index) in boards"
       :key="card.key"
       v-on:swipe="onSwipe"
     >
@@ -27,7 +27,7 @@
 <script>
 import firebase from "../Firebase";
 import router from "../router";
-import gsap, { Power2 } from "gsap";
+//import gsap, { Power2 } from "gsap";
 import { Swipeable } from "vue-swipy";
 
 import logoutIcon from "../assets/logout.svg";
@@ -103,7 +103,7 @@ export default {
     },
     shuffleArray(array) {
       array.sort(() => Math.random() - 0.5);
-      return array
+      return array;
       // this.myQuotes = array
     },
     // randomQuotes() {
@@ -131,15 +131,17 @@ export default {
     },
   },
   computed: {
-    newLike() {
-      return (this.showHeart = this.myQuotes.click);
+    // newLike() {
+    //   return (this.showHeart = this.myQuotes.click);
+    // },
+    // replace the board by the computed
+    newArray() {
+      return this.boards.sort(function () {
+        return 0.5 - Math.random();
+      });
     },
-    newArray(){
-      return this.boards.sort(function(){ return 0.5 - Math.random()})
-    }
   },
   mounted() {
-    
     console.log("page refresh");
   },
   destroyed() {},
@@ -192,6 +194,7 @@ export default {
     left: 0;
     width: 100%;
     height: 100%;
+    z-index: 99;
   }
 
   h6 {
